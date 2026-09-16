@@ -1079,7 +1079,7 @@ function AppInner() {
           ...(activeUser?.navItems.includes("my-week") ? [{ id: "my-week", icon: CalendarDays, label: "My Week" }] : []),
           { id: "action", icon: Inbox, label: "Actions" },
           { id: "approvals", icon: Check, label: "Approvals" },
-          { id: "documents", icon: FileText, label: "Documents" },
+          ...(activeUser?.navItems.includes("documents") ? [{ id: "documents", icon: FileText, label: "Documents" }] : []),
           ...(!activeUser?.navItems.includes("my-week") ? [{ id: "command", icon: ShieldCheck, label: "Command" }] : []),
         ].map(item => {
           const isActive = screen === item.id;
