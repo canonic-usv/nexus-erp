@@ -4706,12 +4706,12 @@ export function Documents({ userRole }: { userRole?: string }) {
           ] : [
             { id: "all" as const, label: "Document Registry" },
           ]),
-          { id: "guide" as const, label: "📖 Platform Guide" },
+          { id: "guide" as const, label: "📖 Platform Guide", desktopOnly: true },
         ]).map(t => (
           <button
             key={t.id}
             onClick={() => setActiveTab(t.id)}
-            className={`border-b-2 px-4 py-2.5 text-xs font-semibold transition ${
+            className={`border-b-2 px-4 py-2.5 text-xs font-semibold transition ${"desktopOnly" in t && t.desktopOnly ? "hidden sm:flex" : ""} ${
               activeTab === t.id
                 ? t.id === "guide" ? "border-primary text-primary bg-primary/5" : "border-primary text-primary"
                 : "border-transparent text-muted-foreground hover:text-foreground"
@@ -4722,9 +4722,9 @@ export function Documents({ userRole }: { userRole?: string }) {
         ))}
       </div>
 
-      {/* ── Platform Guide ── */}
+      {/* ── Platform Guide — desktop only ── */}
       {activeTab === "guide" && (
-        <div className="space-y-6 pb-4">
+        <div className="hidden sm:block space-y-6 pb-4">
           {/* About NEXUS */}
           <div className="grid gap-4 lg:grid-cols-3">
             <Card className="p-5 lg:col-span-2">
