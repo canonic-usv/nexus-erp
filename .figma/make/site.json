@@ -1,0 +1,10 @@
+{
+  "description": "Enables users to quickly build and visualize designs from pasted content, streamlining the creation process for designers and developers.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

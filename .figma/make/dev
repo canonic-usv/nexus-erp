@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export FIGMA_MAKE=1
+exec pnpm exec vite

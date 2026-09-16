@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+:root {
+  /* Surface — cool blue-white from Canonic arc backdrop */
+  --background: #F2F5FC;
+  --foreground: #0C1A38;
+  --card: #ffffff;
+  --card-foreground: #0C1A38;
+  --panel: #EAF0FA;
+
+  /* Brand — USV shield navy as primary */
+  --primary: #1A3D8F;
+  --primary-foreground: #ffffff;
+  --secondary: #DDE5F8;
+  --secondary-foreground: #0C1A38;
+
+  /* Neutrals — cool blue-gray */
+  --muted: #EAF0FA;
+  --muted-foreground: #5A6E92;
+  --border: #C8D5EC;
+  --border-strong: #A8BADA;
+
+  /* Accent — Canonic cerulean arc */
+  --accent: #3580B5;
+  --accent-foreground: #ffffff;
+
+  /* Ring */
+  --ring: rgba(26, 61, 143, 0.30);
+
+  /* Semantic health */
+  --healthy: #16a34a;
+  --healthy-bg: #dcfce7;
+  --attention: #d97706;
+  --attention-bg: #fef3c7;
+  --critical: #dc2626;
+  --critical-bg: #fee2e2;
+  --info: #3580B5;
+  --info-bg: #dbeafe;
+
+  /* Radius */
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-panel: var(--panel);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-ring: var(--ring);
+  --color-healthy: var(--healthy);
+  --color-healthy-bg: var(--healthy-bg);
+  --color-attention: var(--attention);
+  --color-attention-bg: var(--attention-bg);
+  --color-critical: var(--critical);
+  --color-critical-bg: var(--critical-bg);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+  --radius: var(--radius);
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Archivo', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+}
+
+.font-display {
+  font-family: 'Archivo', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-feature-settings: 'kern' 0;
+}
+
+/* Tabular number alignment for data cells */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Focus rings ──────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* ── Scrollbars ───────────────────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+*:hover {
+  scrollbar-color: var(--border-strong) transparent;
+}
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 99px;
+}
+*:hover::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+}
+
+/* Sidebar dark surface scrollbars */
+.nexus-sidebar *:hover {
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+.nexus-sidebar *:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ── Transitions ──────────────────────────────────────────────────── */
+button,
+a,
+[role="button"] {
+  transition-property: color, background-color, border-color, opacity, transform, box-shadow;
+  transition-duration: 120ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Animations ───────────────────────────────────────────────────── */
+@keyframes fadeslide {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeup {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scalein {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-in {
+  animation: fadeslide 0.20s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-fadeup {
+  animation: fadeup 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-scalein {
+  animation: scalein 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Dark mode token overrides ────────────────────────────────────── */
+.dark {
+  --background: #09132B;
+  --foreground: #D8E8FA;
+  --card: #0F1F42;
+  --card-foreground: #D8E8FA;
+  --panel: #132649;
+  --primary: #5B90D8;
+  --primary-foreground: #09132B;
+  --secondary: #1A3360;
+  --secondary-foreground: #B8D0F0;
+  --muted: #132649;
+  --muted-foreground: #7A9ABF;
+  --border: #1F3A6A;
+  --border-strong: #2E5090;
+  --accent: #5BA3D0;
+  --accent-foreground: #09132B;
+  --ring: rgba(91, 144, 216, 0.40);
+  --healthy: #3fb950;
+  --healthy-bg: rgba(63, 185, 80, 0.12);
+  --attention: #d29922;
+  --attention-bg: rgba(210, 153, 34, 0.12);
+  --critical: #f85149;
+  --critical-bg: rgba(248, 81, 73, 0.12);
+  --info: #5BA3D0;
+  --info-bg: rgba(91, 163, 208, 0.12);
+}
+
+/* ── Slide-in from right (notification panel) ─────────────────────── */
+@keyframes slidein-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.animate-slidein-right {
+  animation: slidein-right 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Selection ────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(26, 61, 143, 0.15);
+  color: var(--foreground);
+}
+
+/* ── Page transition ──────────────────────────────────────────────── */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+.screen-enter {
+  animation: fade-in-up 0.14s ease-out both;
+}
+
+/* ── Print styles ─────────────────────────────────────────────────── */
+@media print {
+  /* Hide non-content UI */
+  .nexus-sidebar,
+  nav[aria-label="mobile-nav"],
+  [data-no-print],
+  button,
+  .nexus-topbar {
+    display: none !important;
+  }
+  body, #root {
+    background: white !important;
+    color: black !important;
+  }
+  /* Expand main to full width */
+  .md\:ml-\[248px\] {
+    margin-left: 0 !important;
+  }
+  /* Tables */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    font-size: 10pt;
+    text-align: left;
+  }
+  th { background: #f5f5f5 !important; font-weight: bold; }
+  /* Cards */
+  .rounded-\[var\(--radius\)\] {
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+  }
+  /* Page header */
+  @page {
+    margin: 18mm 14mm;
+  }
+}
+
+/* ── Page transition ── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-in.fade-in {
+  animation: fade-in 0.15s ease-out both;
+}
+
+/* ── Mobile responsive utilities ─────────────────────────────── */
+
+/* Ensure tables scroll horizontally on narrow viewports */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Touch target minimum size for interactive elements on mobile */
+@media (max-width: 640px) {
+  /* Ensure interactive items have enough tap target height */
+  button:not(.no-min-touch),
+  [role="button"]:not(.no-min-touch) {
+    min-height: 36px;
+  }
+
+  /* Modals should use more vertical space on mobile */
+  .modal-content {
+    max-height: 90vh;
+  }
+
+  /* Cards should have reduced padding on small screens */
+  .card-mobile-compact {
+    padding: 0.75rem;
+  }
+}
+
+/* Prevent content overflowing its container on mobile */
+@media (max-width: 768px) {
+  /* Tables with overflow-x-auto */
+  table {
+    min-width: 480px;
+  }
+
+  /* Ensure long words don't overflow */
+  .prose-mobile {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+}
+
+/* ── Sidebar slide transition ─────────────────────────────────── */
+.nexus-sidebar {
+  will-change: transform;
+}
+
+/* ── Bottom nav safe area (iOS notch) ────────────────────────── */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  nav[aria-label="mobile-nav"] {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .pb-safe {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 4rem);
+  }
+}
